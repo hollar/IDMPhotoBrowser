@@ -54,6 +54,9 @@
 @property (nonatomic) BOOL disableVerticalSwipe;
 @property (nonatomic) BOOL disableAutoHide;
 
+@property (nonatomic) CGFloat doneButtonTopSpace;
+@property (nonatomic) CGFloat doneButtonTrailingSpace;
+
 // defines zooming of the background (default 1.0)
 @property (nonatomic) float backgroundScaleFactor;
 

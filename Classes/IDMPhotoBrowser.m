@@ -141,6 +141,7 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
 @synthesize actionsSheet = _actionsSheet, activityViewController = _activityViewController;
 @synthesize trackTintColor = _trackTintColor, progressTintColor = _progressTintColor;
 @synthesize delegate = _delegate;
+@synthesize doneButtonTopSpace = _doneButtonTopSpace, doneButtonTrailingSpace = _doneButtonTrailingSpace;
 
 #pragma mark - NSObject
 
@@ -161,6 +162,8 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
 
         _displayDoneButton = YES;
         _doneButtonImage = nil;
+        _doneButtonTopSpace = 30.0f;
+        _doneButtonTrailingSpace = 20.0f;
 
         _displayToolbar = YES;
         _displayActionButton = YES;
@@ -1094,7 +1097,10 @@ NSLocalizedStringFromTableInBundle((key), nil, [NSBundle bundleWithPath:[[NSBund
 
     // if ([self isLandscape:orientation]) screenWidth = screenBound.size.height;
 
-    return CGRectMake(screenWidth - 75, 30, 55, 26);
+    CGSize buttonSize = self.doneButtonImage ? self.doneButtonImage.size : CGSizeMake(55, 26);
+    CGFloat xPos = screenWidth - (buttonSize.width + _doneButtonTrailingSpace);
+    CGFloat yPos = _doneButtonTopSpace;
+    return CGRectMake(xPos, yPos, buttonSize.width, buttonSize.height);
 }
 
 - (CGRect)frameForCaptionView:(IDMCaptionView *)captionView atIndex:(NSUInteger)index {
